@@ -10,7 +10,7 @@ class Atracao (models.Model):
     name = models.CharField(max_length=30, verbose_name="Nome")
     profissao = models.CharField(max_length=30, verbose_name= "Profissão")
     bio = models.TextField(verbose_name="Biografia", default="Uma breve descrição sobre a atração.")
-    site = models.URLField(verbose_name="Site", default="ex: instagram.com/")
+    site = models.URLField(verbose_name="Site", default="https://instagram.com/")
 
 
     def __str__(self):
