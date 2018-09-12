@@ -6,7 +6,7 @@ class Atracao (models.Model):
         verbose_name = "Atração"
         verbose_name_plural = "Atrações"
 
-    foto = models.ImageField(verbose_name="Foto")
+    foto = models.ImageField(verbose_name="Foto", upload_to="atracoes")
     name = models.CharField(max_length=30, verbose_name="Nome")
     profissao = models.CharField(max_length=30, verbose_name= "Profissão")
     bio = models.TextField(verbose_name="Biografia", default="Uma breve descrição sobre a atração.")
