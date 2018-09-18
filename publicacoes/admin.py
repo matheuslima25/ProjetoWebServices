@@ -1,31 +1,25 @@
 from django.contrib import admin, messages
 
-from publicacoes.models import Publicacao
+from publicacoes.models import Publicacao, Categoria
+admin.site.register(Categoria)
 
 
 @admin.register(Publicacao)
 class PublicacaoAdmin(admin.ModelAdmin):
-    list_display = ('usuario', 'mensagem', 'dt_criacao', )
+    list_display = ('usuario', 'imagem', 'titulo', 'mensagem', 'dt_criacao', 'categoria')
     search_fields = ('mensagem', 'usuario__email', )
     list_filter = ('usuario', 'dt_criacao', )
 
     fieldsets = (
         (None, {
-            'fields': ('mensagem', )
+            'fields': ('imagem', 'titulo', 'mensagem', 'categoria')
         }),
         ("Dados", {
             'fields': (('dt_criacao', 'dt_atualizacao', ), )
         }),
     )
     readonly_fields = ('dt_criacao', 'dt_atualizacao', )
-    actions = ('atualizar_action', )
 
-    def atualizar_action(self, request, queryset):
-        for p in queryset:
-            p.mensagem += "..."
-            p.save()
-        messages.info(request, "Publicações atualizadas com sucesso!")
-    atualizar_action.short_description = "Atualizar com ..."
 
     def save_model(self, request, obj, form, change):
         if not change:

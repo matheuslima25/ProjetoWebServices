@@ -9,8 +9,8 @@ class Atracao (models.Model):
     foto = models.ImageField(verbose_name="Foto", upload_to="atracoes")
     name = models.CharField(max_length=30, verbose_name="Nome")
     profissao = models.CharField(max_length=30, verbose_name= "Profissão")
-    bio = models.TextField(verbose_name="Biografia", default="Uma breve descrição sobre a atração.")
-    site = models.URLField(verbose_name="Site", default="https://instagram.com/")
+    bio = models.TextField(verbose_name="Biografia", help_text="Uma breve descrição sobre a atração.")
+    site = models.URLField(verbose_name="Site", help_text="https://instagram.com/")
 
 
     def __str__(self):

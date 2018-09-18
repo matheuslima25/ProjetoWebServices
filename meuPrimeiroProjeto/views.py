@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from atracoes import models
+from django.shortcuts import render
 
-def atracoes (request):
-    return HttpResponse(models.Atracao)
+def home (request):
+    return render(request, "index.html")
 
