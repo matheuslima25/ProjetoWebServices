@@ -12,7 +12,6 @@ class Atracao (models.Model):
     bio = models.TextField(verbose_name="Biografia", help_text="Uma breve descrição sobre a atração.")
     site = models.URLField(verbose_name="Site", help_text="https://instagram.com/")
 
-
     def __str__(self):
-        return self.name #edita a forma que é visto na lista dos usuarios
+        return "%s - %s" % (self.name, self.profissao)
 

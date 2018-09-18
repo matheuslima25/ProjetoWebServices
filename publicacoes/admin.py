@@ -1,4 +1,4 @@
-from django.contrib import admin, messages
+from django.contrib import admin
 
 from publicacoes.models import Publicacao, Categoria
 admin.site.register(Categoria)
@@ -19,7 +19,6 @@ class PublicacaoAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ('dt_criacao', 'dt_atualizacao', )
-
 
     def save_model(self, request, obj, form, change):
         if not change:
