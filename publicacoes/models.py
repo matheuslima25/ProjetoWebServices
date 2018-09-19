@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from atracoes.models import Atracao
+
+
 
 class Categoria(models.Model):
     class Meta:
@@ -55,3 +58,30 @@ class Publicacao(models.Model):
         for i in range(len(breadcrumb)-1):
             breadcrumb[i] = '/'.join(breadcrumb[-1:i-1:-1])
         return breadcrumb[-1:0:-1]
+
+
+class Patrocinador(models.Model):
+    class Meta:
+        verbose_name = "Patrocinador"
+        verbose_name_plural = "Patrocinadores"
+
+    nome = models.CharField(verbose_name="Nome", max_length=200)
+    imagem = models.ImageField(verbose_name="Imagem", upload_to="publicacoes", blank=True, null=True)
+
+class Programacao(models.Model):
+    class Meta:
+        verbose_name = 'Programação'
+        verbose_name_plural = 'Programações'
+
+    dt_data = models.DateTimeField(verbose_name="Data/Hora")
+    atracao = models.ForeignKey('Atracao', null=True, blank=True, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey('Categoria', null=True, blank=True, on_delete=models.DO_NOTHING)
+
+
+class Atividade(models.Model):
+    class Meta:
+        verbose_name = 'Atividade do Evendo'
+        verbose_name_plural = 'Atividades do Evento'
+
+    nome = models.CharField(verbose_name='Nome', max_length=200)
+    idade = models.IntegerField(verbose_name='Idade')

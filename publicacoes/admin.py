@@ -1,8 +1,14 @@
 from django.contrib import admin
 
-from publicacoes.models import Publicacao, Categoria
-admin.site.register(Categoria)
+    from publicacoes.models import Publicacao, Categoria
+    from publicacoes.models import Publicacao, Categoria, Patrocinador, Programacao, Atividade
 
+                admin.site.register(Categoria)
+                admin.site.register(Patrocinador)
+                admin.site.register(Programacao)
+                admin.site.register(Atividade)
+
+ @admin.register(Publicacao)
 
 @admin.register(Publicacao)
 class PublicacaoAdmin(admin.ModelAdmin):
