@@ -1,14 +1,11 @@
 from django.contrib import admin
+from publicacoes.models import Publicacao, Categoria, Patrocinador, Programacao, Inscricao
 
-    from publicacoes.models import Publicacao, Categoria
-    from publicacoes.models import Publicacao, Categoria, Patrocinador, Programacao, Atividade
+admin.site.register(Categoria)
+admin.site.register(Patrocinador)
+admin.site.register(Programacao)
+admin.site.register(Inscricao)
 
-                admin.site.register(Categoria)
-                admin.site.register(Patrocinador)
-                admin.site.register(Programacao)
-                admin.site.register(Atividade)
-
- @admin.register(Publicacao)
 
 @admin.register(Publicacao)
 class PublicacaoAdmin(admin.ModelAdmin):
@@ -34,3 +31,15 @@ class PublicacaoAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.filter(usuario=request.user)
+
+
+class Patrocinador(admin.ModelAdmin):
+    list_display = ('nome', 'site')
+
+
+class Programacao(admin.ModelAdmin):
+    list_display = ('dt_hora', 'desc', 'categoria')
+
+
+class Inscricao(admin.ModelAdmin):
+    list_display = ('nome', 'email', 'categoria')

@@ -4,7 +4,6 @@ from django.db import models
 from atracoes.models import Atracao
 
 
-
 class Categoria(models.Model):
     class Meta:
         unique_together = ('slug', 'parent',)
@@ -42,9 +41,6 @@ class Publicacao(models.Model):
     dt_criacao = models.DateTimeField(verbose_name="Criado em", auto_now_add=True)
     dt_atualizacao = models.DateTimeField(verbose_name="Atualizado em", auto_now=True)
 
-    def teste(self):
-        return "ID da mensagem é %s" % self.id
-
     def __str__(self):
         return "%s: %s" % (self.usuario, self.mensagem)
 
@@ -66,22 +62,35 @@ class Patrocinador(models.Model):
         verbose_name_plural = "Patrocinadores"
 
     nome = models.CharField(verbose_name="Nome", max_length=200)
+    site = models.URLField(verbose_name="Site", null=True, blank=True)
     imagem = models.ImageField(verbose_name="Imagem", upload_to="publicacoes", blank=True, null=True)
+
+    def __str__(self):
+        return "%s: %s" % (self.nome, self.site)
+
 
 class Programacao(models.Model):
     class Meta:
         verbose_name = 'Programação'
-        verbose_name_plural = 'Programações'
+        verbose_name_plural = 'Programação'
 
-    dt_data = models.DateTimeField(verbose_name="Data/Hora")
-    atracao = models.ForeignKey('Atracao', null=True, blank=True, on_delete=models.DO_NOTHING)
+    dt_hora = models.DateTimeField(verbose_name="Data/Hora")
+    desc = models.CharField(verbose_name="Descricao", max_length=50, blank=True, null=True)
     categoria = models.ForeignKey('Categoria', null=True, blank=True, on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return "%s: %s - %s" % (self.dt_hora, self.desc, self.categoria)
 
-class Atividade(models.Model):
+
+class Inscricao(models.Model):
     class Meta:
-        verbose_name = 'Atividade do Evendo'
-        verbose_name_plural = 'Atividades do Evento'
+        verbose_name = 'Inscricao'
+        verbose_name_plural = 'Inscrições'
 
     nome = models.CharField(verbose_name='Nome', max_length=200)
+    email = models.EmailField(verbose_name="E-mail", blank=True, null=True)
     idade = models.IntegerField(verbose_name='Idade')
+    categoria = models.ForeignKey('Categoria', null=True, blank=True, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return "%s - %s - %s" % (self.nome, self.email, self.categoria)
