@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import all_news
+
+from django.contrib.auth.views import LoginView, LogoutView
+
+from meuPrimeiroProjeto import views
 
 urlpatterns = [
-    path('all/', all_news),
+    path('', views.HomeView.as_view()),
 ]
