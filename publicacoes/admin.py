@@ -1,10 +1,11 @@
 from django.contrib import admin
-from publicacoes.models import Publicacao, Categoria, Patrocinador, Programacao, Inscricao
+from publicacoes.models import Publicacao, Categoria, Patrocinador, Programacao, Inscricao, Atracao
 
 admin.site.register(Categoria)
 admin.site.register(Patrocinador)
 admin.site.register(Programacao)
 admin.site.register(Inscricao)
+admin.site.register(Atracao)
 
 
 @admin.register(Publicacao)
@@ -43,3 +44,7 @@ class Programacao(admin.ModelAdmin):
 
 class Inscricao(admin.ModelAdmin):
     list_display = ('nome', 'email', 'categoria')
+
+
+class Atracao(admin.ModelAdmin):
+    list_display = ('name', 'profissao')

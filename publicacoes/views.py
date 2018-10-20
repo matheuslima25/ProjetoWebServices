@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+
+from publicacoes.models import Publicacao
 
 
-def all_news(request):
-    return render(request, 'meuPrimeiroProjeto/index.html')
+class HomeView(ListView):
+    template_name = 'meuPrimeiroProjeto/index.html'
+    model = Publicacao
+

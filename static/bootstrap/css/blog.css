@@ -123,3 +123,10 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+.post-heading, .intro-header{
+    display: block;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
