@@ -1,0 +1,52 @@
+{% extends "meuPrimeiroProjeto/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block css %}
+    <link href="{% static 'bootstrap/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post" class="form-signin">{% csrf_token %}
+        <div class="text-center mb-4">
+            <img class="img-fluid" src="{% static 'favicon.png' %}" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Entrar</h1>
+            <label for="inputUsername" class="sr-only">Usuário</label>
+            <input type="text" id="inputUsername"
+                   class="form-control{% if form.username.errors %} is-invalid{% endif %}" placeholder="Usuário"
+                   name="username" required autofocus>
+            {% for error in form.username.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                    <div class="alert alert-danger" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Usuário incorreto</strong> ,tente novamente.
+                    </div>
+                </div>
+            {% endfor %}
+
+            <label for="inputPassword" class="sr-only">Senha</label>
+            <input type="password" id="inputPassword"
+                   class="form-control{% if form.password.errors %} is-invalid{% endif %}" placeholder="Senha"
+                   name="password" required>
+            {% for error in form.password.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                    <div class="alert alert-danger" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Senha incorreta</strong> ,tente novamente.
+                    </div>
+                </div>
+            {% endfor %}
+
+            <input type="hidden" name="next" value="/admin/">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+            <p class="mt-5 mb-3 text-muted text-center">&copy; {% now "Y" %}</p>
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
