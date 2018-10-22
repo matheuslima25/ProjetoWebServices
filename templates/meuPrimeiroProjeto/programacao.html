@@ -1,0 +1,23 @@
+{% extends 'meuPrimeiroProjeto/base.html' %}
+
+{% block title %} Programação {% endblock %}
+
+
+{% block post %}
+
+    <h2>Programação</h2>
+    <p>Veja o que vai acontecer em nosso evento.</p>
+            <div class="row">
+            <div class="col-md-4">Horário</div>
+            <div class="col-md-4">Atividade</div>
+            <div class="col-md-4">Categoria</div>
+        </div>
+    {% for prog in programacao_list %}
+        <div class="row">
+            <div class="col-md-4">{{ prog.dt_hora|date:"H:i" }}</div>
+            <div class="col-md-4">{{ prog.desc }}</div>
+            <div class="col-md-4">{{ prog.categoria }}</div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

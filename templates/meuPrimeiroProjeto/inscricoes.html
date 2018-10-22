@@ -1,0 +1,65 @@
+{% extends 'meuPrimeiroProjeto/base.html' %} {% load static %}
+
+{% block title %} Inscrições {% endblock %}
+
+{% block css %}
+    <link href={% static 'bootstrap/css/form-validation.css' %}> {% endblock %}
+
+
+{% block post %}
+
+    <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Inscrição</h4>
+        <form class="needs-validation" method="post" novalidate> {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Name">Nome</label>
+                    <input type="text" class="form-control {% if form.nome.errors %} is-invalid {% endif %}" id="InputName" placeholder="João das Neves" value="" required>
+                    {% for error in form.idade.erros %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label for="age">Idade</label>
+                    <input type="number" class="form-control {% if form.idade.errors %} is-invalid {% endif %}" id="InputAge" required value="1" min="1">
+                    {% for error in form.idade.erros %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control {% if form.email.errors %} is-invalid {% endif %}" id="InputEmail" placeholder="seu@email.com">
+                    {% for error in form.idade.erros %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="country">Categoria</label>
+                    <select class="custom-select d-block w-100" id="categoria" required>
+                        <option value="">Escolha...</option>
+                        <option>Campeonato</option>
+                        <option>Concurso</option>
+                    </select>
+                    {% for error in form.idade.erros %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <hr class="col-md-6 mb-3">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

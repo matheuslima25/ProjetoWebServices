@@ -1,0 +1,26 @@
+{% extends 'meuPrimeiroProjeto/base.html' %}
+
+{% block title %} Atrações {% endblock %}
+
+
+{% block post %}
+
+    <h2>Atrações</h2>
+    <p>Veja algumas atrações do nosso evento.</p>
+    {% for atra in atracao_list%}
+        <div class="container marketing">
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="rounded-circle"
+                         src="{{ atra.foto.url }}"
+                         alt="" width="140" height="140">
+                    <h2>{{ atra.name }}</h2>
+                    <small>{{ atra.profissao }}</small>
+                    <p>{{ atra.bio }}</p>
+                    <p><a class="btn btn-secondary" href="{{ atra.site }}" role="button">Mais &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
