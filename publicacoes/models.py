@@ -61,7 +61,7 @@ class Patrocinador(models.Model):
 
     nome = models.CharField(verbose_name="Nome", max_length=200)
     site = models.URLField(verbose_name="Site", null=True, blank=True)
-    imagem = models.ImageField(verbose_name="Imagem", upload_to="publicacoes", blank=True, null=True)
+    imagem = models.ImageField(verbose_name="Imagem", upload_to="patrocinadores", blank=True, null=True)
 
     def __str__(self):
         return "%s: %s" % (self.nome, self.site)

@@ -35,7 +35,7 @@ class PublicacaoAdmin(admin.ModelAdmin):
 
 
 class Patrocinador(admin.ModelAdmin):
-    list_display = ('nome', 'site')
+    list_display = ('nome', 'imagem', 'site')
 
 
 class Programacao(admin.ModelAdmin):
